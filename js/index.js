@@ -55,8 +55,9 @@ function eventSubmit(event) {
 
             const resultCubo = calcCubo.toFixed(0);
             const resultCamadas = calcCamadas.toFixed(0);
-
-            return escreveText(resultCubo, resultCamadas);
+            
+            const resultadoTotal = resultCubo * resultCamadas;
+            return escreveText(resultCubo, resultCamadas, resultadoTotal);
 
         }
 
@@ -64,16 +65,16 @@ function eventSubmit(event) {
 
     calcAreaCubo()
 
-    function escreveText(resultCubo, resultCamadas) {
+    function escreveText(resultCubo, resultCamadas, resultadoTotal) {
         const elementText = document.querySelector('main').children[1];
 
         if (resultCubo && resultCamadas <= 0) {
-            elementText.innerHTML = "Não cabem caixas neste espaço!";
+            elementText.innerHTML = "Não cabem caixas neste espaço";
 
         } if (resultCubo && resultCamadas > 0) {
             console.log('Caixas por aqui');
 
-            elementText.innerHTML = `<p>Caixas no lastro ${resultCubo}, camadas: ${resultCamadas}</p>`;
+            elementText.innerHTML = `<p>Caixas no lastro ${resultCubo}, camadas: ${resultCamadas}, total de caixas: ${resultadoTotal}</p>`;
 
 
         }
