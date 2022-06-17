@@ -7,42 +7,42 @@ function eventSubmit(event) {
     event.preventDefault();
 
     //Capturar as medidas da Caixa eixos = x, y, z
-    const inputAlturaCaixa = document.getElementById('alturaCaixa');
+    const inputBoxHeight = document.getElementById('boxHeight');
 
-    const inputLarguraCaixa = document.getElementById('larguraCaixa');
+    const inputBoxWidtth = document.getElementById('boxWidth');
 
-    const inputComprimentoCaixa = document.getElementById('comprimentoCaixa');
+    const inputBoxLength = document.getElementById('boxLength');
 
-    const alturaCaixa = Number(inputAlturaCaixa.value);
+    const boxHeight = Number(inputBoxHeight.value);
 
-    const larguraCaixa = Number(inputLarguraCaixa.value);
+    const boxWidth = Number(inputBoxWidtth.value);
 
-    const comprimentoCaixa = Number(inputComprimentoCaixa.value);
+    const boxLength = Number(inputBoxLength.value);
 
     //Capturar as medidas do Paralelo eixos = x, y, z
-    const inputAlturaParalelo = document.getElementById('alturaParalelo');
+    const inputParallelHeight = document.getElementById('parallelHeight');
 
-    const inputLarguraParalelo = document.getElementById('larguraParalelo');
+    const inputParallelWidth = document.getElementById('parallelWidth');
 
-    const inputComprimentoParalelo = document.getElementById('comprimentoParalelo');
+    const inputParallelLength = document.getElementById('parallelLength');
 
-    const alturaParalelo = Number(inputAlturaParalelo.value);
+    const parallelHeight = Number(inputParallelHeight.value);//altura
 
-    const larguraParalelo = Number(inputLarguraParalelo.value);
+    const parallelWidth = Number(inputParallelWidth.value);//largura
 
-    const comprimentoParalelo = Number(inputComprimentoParalelo.value);
+    const parallelLength = Number(inputParallelLength.value);//comprimento
 
 
     //Calcular a area dos paralelos;
     const calcAreas = {
         calcAreaCaixa: function () {
-            const resultadoAreaCaixa = comprimentoCaixa * larguraCaixa;
-            return resultadoAreaCaixa;
+            const boxAreaResult = boxLength * boxWidth;
+            return boxAreaResult;
         },
 
         calcAreaParalelo: function () {
-            const resultadoAreaParalelo = larguraParalelo * comprimentoParalelo;
-            return resultadoAreaParalelo;
+            const parallelAreaResult = parallelLength * parallelWidth;
+            return parallelAreaResult;
         }
     }
 
@@ -51,13 +51,13 @@ function eventSubmit(event) {
         if (calcAreas.calcAreaParalelo >= calcAreas.calcAreaCaixa) {
 
             const calcCubo = calcAreas.calcAreaParalelo() / calcAreas.calcAreaCaixa();
-            const calcCamadas = alturaParalelo / alturaCaixa;
+            const calcCamadas = parallelHeight / boxHeight;
 
-            const resultCubo = calcCubo.toFixed(0);
-            const resultCamadas = calcCamadas.toFixed(0);
+            const cubeResult = calcCubo.toFixed(0);
+            const layersResult = calcCamadas.toFixed(0);
             
-            const resultadoTotal = resultCubo * resultCamadas;
-            return escreveText(resultCubo, resultCamadas, resultadoTotal);
+            const totalResult = cubeResult * layersResult;
+            return writeText(cubeResult, layersResult, totalResult);
 
         }
 
@@ -65,22 +65,23 @@ function eventSubmit(event) {
 
     calcAreaCubo()
 
-    function escreveText(resultCubo, resultCamadas, resultadoTotal) {
+    function writeText(cubeResult, layersResult, totalResult) {
+
         const elementText = document.querySelector('main').children[1];
 
-        if (resultCubo && resultCamadas <= 0) {
+        if (cubeResult && layersResult <= 0) {
             elementText.innerHTML = "Não cabem caixas neste espaço";
 
-        } if (resultCubo && resultCamadas > 0) {
+        } if (cubeResult && layersResult > 0) {
             console.log('Caixas por aqui');
 
-            elementText.innerHTML = `<p>Caixas no lastro ${resultCubo}, camadas: ${resultCamadas}, total de caixas: ${resultadoTotal}</p>`;
+            elementText.innerHTML = `<p>Caixas no lastro ${cubeResult}, camadas: ${layersResult}, total de caixas: ${totalResult}</p>`;
 
 
         }
     }
 
-    escreveText()
+    writeText()
 
 }
 
