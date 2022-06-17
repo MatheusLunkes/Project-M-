@@ -35,12 +35,12 @@ function eventSubmit(event) {
 
     //Calcular a area dos paralelos;
     const calcAreas = {
-        calcAreaCaixa: function () {
+        calcBoxArea: function () {
             const boxAreaResult = boxLength * boxWidth;
             return boxAreaResult;
         },
 
-        calcAreaParalelo: function () {
+        calcParallelArea: function () {
             const parallelAreaResult = parallelLength * parallelWidth;
             return parallelAreaResult;
         }
@@ -48,7 +48,7 @@ function eventSubmit(event) {
 
     
     function calcAreaCubo() {
-        if (calcAreas.calcAreaParalelo >= calcAreas.calcAreaCaixa) {
+        if (calcAreas.calcParallelArea >= calcAreas.calcBoxArea) {
 
             const calcCubo = calcAreas.calcAreaParalelo() / calcAreas.calcAreaCaixa();
             const calcCamadas = parallelHeight / boxHeight;
